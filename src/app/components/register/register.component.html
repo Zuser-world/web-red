@@ -1,0 +1,116 @@
+<div class="container pt-4">
+    <div class="row mt-5 ">
+        <div class="col-lg-5 offset-lg-4 mt-5 mb-5">
+            <div class="card text-center ">
+                <div class="card-body">
+                    <h3>CREATE NEW USER</h3>
+                    <div *ngIf="loading" class="spinner-grow" style="width: 3rem; height: 3rem;" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                    <span  class="badge bg-danger" *ngIf="false && createUser.invalid">TODOS LOS CAMPOS SON OBLIGATORIOS</span>
+                    <form class="mt-4" [formGroup]="createUser" (ngSubmit)="registerUser()" autocomplete="off">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input  autocomplete="off" type="text" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="name">
+                                    <label for="floatingInput">Nombre</label>
+                                </div>
+                                <span  class="text-danger " *ngIf="createUser.get('name')?.hasError('required') && createUser.get('name')?.touched">
+                                    <p class="text-start "><strong>Nombre</strong> requerido</p>
+                                </span>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="apellido">
+                                    <label for="floatingInput">Apellido</label>
+                                </div>
+                                <span  class="text-danger " *ngIf="createUser.get('apellido')?.hasError('required') && createUser.get('apellido')?.touched">
+                                    <p class="text-start"><strong>Apellido</strong> requerido</p>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input type="number" class="form-control" id="floatingInput" placeholder="name@example.com" min="0" max="80" formControlName="edad">
+                                    <label for="floatingInput">Edad</label>
+                                </div>
+                                <span  class="text-danger " *ngIf="createUser.get('edad')?.hasError('required') && createUser.get('edad')?.touched">
+                                    <p class="text-start"><strong>Edad</strong> requerido</p>
+                                </span>
+                                <span *ngIf="createUser.get('edad')?.hasError('max') && createUser.get('edad')?.touched" class="text-danger ">
+                                    <p class="text-start"><strong>Edad</strong> invalida</p>
+                                </span>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="nickname">
+                                    <label for="floatingInput">Nick Name</label>
+                                </div>
+                                <span class="text-danger " *ngIf="createUser.get('nickname')?.hasError('required') && createUser.get('nickname')?.touched">
+                                    <p class="text-start"><strong>Nick Name</strong> requerido</p>
+                                </span>
+                                <span *ngIf="createUser.get('nickname')?.hasError('minlength') && createUser.get('nickname')?.touched" class="text-danger errorLabel">
+                                    <p class="text-start "><strong>Nick Name</strong> de 6 caracteres</p>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="email">
+                            <label for="floatingInput">Email address</label>
+                            <span  class="text-danger" *ngIf="createUser.get('email')?.hasError('required') && createUser.get('email')?.touched">
+                                <p class="text-start mt-3 mb-1"><strong>Correo</strong> requerido</p>
+                            </span>
+                            <span  class="text-danger " *ngIf="createUser.get('email')?.hasError('email') && createUser.get('email')?.touched">
+                                <p class="text-start mt-3 mb-1">El <strong>formato</strong> es invalido</p>
+                            </span>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="password">
+                            <label for="floatingInput">Password</label>
+                        </div>
+                        <span class="text-danger " *ngIf="createUser.get('password')?.hasError('required') && createUser.get('password')?.touched">
+                            <p class="text-start "><strong>Password</strong> requerida</p>
+                        </span>
+                        <span class="text-danger errorLabel"  *ngIf="createUser.get('password')?.hasError('minlength') && createUser.get('password')?.touched">
+                            <p class="text-start "><strong>Password</strong> de 6 caracteres</p>
+                        </span>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="repeatpassword">
+                            <label for="floatingInput">Repetir Password</label>
+                        </div>
+                        <span class="text-danger " *ngIf="createUser.get('repeatpassword')?.hasError('required') && createUser.get('repeatpassword')?.touched">
+                            <p class="text-start"><strong>Password</strong> requerida</p>
+                        </span>
+                        <span class="text-danger errorLabel"  *ngIf="createUser.get('repeatpassword')?.hasError('minlength') && createUser.get('repeatpassword')?.touched">
+                            <p class="text-start mt-3 mb-1"><strong>Password</strong> de 6 caracteres</p>
+                        </span>
+                        <span class="text-danger errorLabel"  *ngIf="createUser.value.password !== createUser.value.repeatpassword && createUser.get('repeatpassword')?.touched">
+                            <p class="text-start mt-3 mb-1"><strong>Password</strong> distinta</p>
+                        </span>
+                        <div class=" mt-3">
+                            <button [disabled]="createUser.invalid" type="submit" class="btn btn-dark btn-lg">
+                                Registrar
+                            </button>
+                            <br>
+                            <div class="mt-3 mb-3">
+                                <a routerLink="/login">Volver </a>
+                            </div>
+                        </div>
+                        <div style="float:left; width: 44%;"><hr/></div>
+                        <div style="float:right; width: 44%;"><hr/></div>
+                        or
+                        <div class="mt-3">
+                            <button type="button" class="btn btn-primary btn-lg" style="margin-right: 30px;"  (click)="registerUserWithGoogle()">
+                                <i class="fa-brands fa-google"></i>
+                            </button>
+                            <button type="button" class="btn btn-primary btn-dark btn-lg" (click)="registerUserWithGithub()">
+                                <i class="fa-brands fa-github"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

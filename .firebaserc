@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "web-red-44cba": {
+      "hosting": {
+        "web-red": [
+          "web-red-44cba"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "web-red-44cba"
+  }
+}

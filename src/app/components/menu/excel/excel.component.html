@@ -1,0 +1,204 @@
+<div class="container mt-3">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/dashboard">Dashboard</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
+          aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/dashboard">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/users">Users</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/upload">Upload</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/remove">Remove</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/admin">Admin</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" routerLink="/excel">Excel</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/youtube">Youtube</a>
+            </li>
+          </ul>
+          <div class="d-flex" role="search">
+            <button class="btn btn-outline-light" type="submit" (click)="logOut()">Logout</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+</div>
+<div class="container-sm mt-5">
+    <div class="card">
+        <div class="card-body">
+            <div class="card text-center">
+                <div class="card-header">
+                 Introduce tu Tabla de Excel
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Tabla de Excel</h5>
+                  <p class="card-text">Para poder Filtrar Según los elementos</p>
+                    <div class="input-group mb-3">
+                        <!-- <label class="input-group-text" for="inputGroupFile01" >Upload</label> -->
+                        <input type="file" class="form-control" id="inputGroupFile01" (change)="DataFile($event)">
+                      </div>
+                </div>
+              </div>
+        </div>
+    </div>
+
+    <div class="card text-center mt-5">
+        <div class="card-header">
+          <h5 class="card-text">Tabla de Coches</h5>
+        </div>
+        <div class="card-header">
+            Filtros para la busqueda del Coche
+        </div>
+        <form [formGroup]="filterAboutTable" (ngSubmit)="datos()">
+            <div class="container text-center">
+                <div class="row justify-content-center mt-3">
+
+                  <div class="col-4">
+                    <p class="card-text">Color</p>
+                    <select class="form-select" aria-label="Default select example" formControlName="color">
+                        <option value="Rojo">Rojo</option>
+                        <option value="amarillo">Amarillo</option>
+                        <option value="Negro">Negro</option>
+                        <option value="azul">Azul</option>
+                        <option value="Blanco">Blanco</option>
+                      </select>
+                  </div>
+                  <div class="col-4">
+                    <p class="card-text">
+                        Marca del Vehiculo
+                    </p>
+                    <select class="form-select" aria-label="Default select example" formControlName="marca">
+                      <option value="Abarth">Abarth</option>
+                      <option value="Alfa Romeo">Alfa Romeo</option>
+                      <option value="Audi">Audi</option>
+                      <option value="Bentley">Bentley</option>
+                      <option value="BMW">BMW</option>
+                      <option value="Cadillac">Cadillac</option>
+                      <option value="Chevrolet">Chevrolet</option>
+                      <option value="Citroen">Citroen</option>
+                      <option value="Ferrari">Ferrari</option>
+                      <option value="Ford">Ford</option>
+                      <option value="Honda">Honda</option>
+                      <option value="Hyundai">Hyundai</option>
+                      <option value="Jaguar">Jaguar</option>
+                      <option value="Kia">Kia</option>
+                      <option value="Lamborghini">Lamborghini</option>
+                      <option value="Land Rover">Land Rover</option>
+                      <option value="Lexus">Lexus</option>
+                      <option value="Maserati">Maserati</option>
+                      <option value="Mazda">Mazda</option>
+                      <option value="Mercedes-Benz">Mercedes-Benz</option>
+                      
+                      </select>
+                  </div>
+                </div>
+                <div class="rot justify-content-center mt-3">
+                    <p class="card-text">Caballos de Potencia</p>
+                </div>
+                <div class="row justify-content-center">
+                  <div class="col-4 mt-3" >
+                    <!-- formControlName="valor" Se puede usar el formControlName en el Select pero desaparece el Select por default--> 
+                    <select class="form-select" aria-label="Default select example" (change)="select($event)" formControlName="valor">
+                        <option value="<">Menor</option>
+                        <option value=">" >Mayor</option>
+                        <option value="==" >Igual</option>o
+                      </select>
+                  </div>
+                  <div class="col-4 mt-3">
+                    <input type="text" aria-label="First name" class="form-control" formControlName="caballosNumber">
+                  </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-4 mt-3">
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary" type="submit" [disabled]="filterAboutTable.invalid">Search</button>
+                        </div>
+                        <div class="d-grid gap-2 mt-3">
+                          <button class="btn btn-danger" type="button" (click)="eliminarEmpleado()" disabled>Delete Table of the DataBase</button>
+                      </div>
+                      <div class="d-grid gap-2 mt-3">
+                        <button class="btn btn-success" type="button" (click)="cleanDataTable()">Clear Table</button>
+                      </div>
+                    </div>
+                </div>
+              </div>
+
+        </form>
+
+        <div class="card-body table-responsive-sm">
+            <table class="table table-dark" >
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Marca</th>
+                    <th scope="col">Color</th>
+                    <th scope="col">Modelo</th>
+                    <th scope="col">Caballos</th>
+                    <th scope="col">Información</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="table-activ" *ngFor="let item of show_Table">
+                    <th scope="row">{{item.id}}</th>
+                    <td>{{ item.Nombre }}</td>
+                    <td>{{ item.Color }}</td>
+                    <td>{{ item.Modelo }}</td>
+                    <td>{{ item.CV }}</td>
+                    <td>
+
+                      <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="informacion(item.uidTable)">
+  View Info
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: black">Información del Vehiculo</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="card" style="width: 18rem;" style="color: black">
+            <h5 class="card-title" ></h5>
+            <p class="card-text">Aun trabajando</p>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        <div class="card-footer text-muted">
+          2 days ago
+        </div>
+      </div>
+
+</div>

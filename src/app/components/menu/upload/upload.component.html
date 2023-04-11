@@ -1,0 +1,66 @@
+<div class="container mt-3">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/dashboard">Dashboard</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
+        aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/dashboard">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/users">Users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/upload">Upload</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/remove">Remove</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/admin">Admin</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/excel">Excel</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/youtube">Youtube</a>
+          </li>
+        </ul>
+        <div class="d-flex" role="search">
+          <button class="btn btn-outline-light" type="submit" (click)="logOut()">Logout</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="card mt-4">
+    <h5 class="card-header">Imagenes</h5>
+    <div class="card-body">
+      <div class="input-group mb-3">
+        <input type="file" class="form-control" id="inputGroupFile02" accept="image/*" (change)="statusImg($event)">
+        <button class="btn  btn-primary" (click)="uploadImg()">Upload</button>
+      </div>
+    </div>
+  </div>
+  <div class="card mt-4">
+    <h5 class="card-header">Documentos</h5>
+    <div class="card-body">
+      <div class="input-group mb-3">
+        <input type="file" class="form-control" id="inputGroupFile02" accept="application/pdf" (change)="statusDocument($event)">
+        <button class="btn  btn-primary" (click)="uploadDocument()">Upload</button>
+      </div>
+    </div>
+  </div>
+  <div class="card mt-4">
+    <h5 class="card-header">Audios</h5>
+    <div class="card-body">
+      <div class="input-group mb-3">
+        <input type="file" class="form-control" id="inputGroupFile02" accept="audio/mpeg, audio/wav" (change)="statusAudio($event)">
+        <button class="btn  btn-primary" (click)="uploadAudio()">Upload</button>
+      </div>
+    </div>
+  </div>
+</div>
