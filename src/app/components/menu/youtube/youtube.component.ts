@@ -34,17 +34,7 @@ export class YoutubeComponent implements OnInit {
     this.router.navigate(['/login'])
   }
   busqueda(search: any){
-    let apis = [
-      'LuOlangNgentot',
-      'c2459db922',
-      '37CC845916',
-      '6fb0eff124',
-      'hdiiofficial',
-      'fiktod',
-      'BF39D349845E',
-      '675e34de8a',
-      '0b917b905e6f'
-    ]
+
     let apikey = apis[Math.floor(apis.length * Math.random())]
     const options = {
       method: 'GET',
@@ -71,7 +61,7 @@ export class YoutubeComponent implements OnInit {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
-        'X-RapidAPI-Key': 'bb1712323dmsha1d13f7d5f623cep193396jsn42771ba9a03d',
+        
         'X-RapidAPI-Host': 'youtube-to-mp315.p.rapidapi.com'
       },
       body: '{}'
